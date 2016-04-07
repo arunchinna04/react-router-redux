@@ -7,14 +7,14 @@ export default function App({ children }) {
       <header>
         Links:
         {' '}
-        <Link to="/">Home</Link>
+        <Link to="/app">Home</Link>
         {' '}
-        <Link to="/foo">Foo</Link>
+        <Link to="/app/foo">Foo</Link>
         {' '}
-        <Link to="/bar">Bar</Link>
+        <Link to="/app/bar">Bar</Link>
       </header>
       <div>
-        <button onClick={() => browserHistory.push('/foo')}>Go to /foo</button>
+        <button onClick={() => browserHistory.push('/app/foo')}>Go to /foo</button>
       </div>
       <div style={{ marginTop: '1.5em' }}>{children}</div>
     </div>

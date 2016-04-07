@@ -4,6 +4,7 @@
   "repository": "reactjs/react-router-redux",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.9.1",
     "babel": "^6.5.2",
     "gulp": "^3.9.1",
     "gulp-serve": "^1.2.0",
