@@ -19,7 +19,7 @@ export function getUsers() {
 export function authenticateUsers(data) {
     return axios.post('http://localhost:8011/auth',data).then(function(response) {      
 
-        return response;
+        return response.data;
 
     }).catch(function(err) {
         console.error(err);

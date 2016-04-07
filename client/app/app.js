@@ -8,12 +8,13 @@ import { createStore, combineReducers } from 'redux'
 import { Provider } from 'react-redux'
 import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
-
-
+import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import * as reducers from './reducers'
 
 import Routes from './config/routes'; 
+
+injectTapEventPlugin();
 
 const reducer = combineReducers({
   ...reducers,
