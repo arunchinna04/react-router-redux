@@ -40472,6 +40472,8 @@
 	    _reactRouter.Route,
 	    { path: '/app', component: _components.App },
 	    _react2.default.createElement(_reactRouter.IndexRoute, { component: _components.DashBoard }),
+	    _react2.default.createElement(_reactRouter.Route, { path: 'myAccount', component: _components.Foo }),
+	    _react2.default.createElement(_reactRouter.Route, { path: 'attendance', component: _components.Foo }),
 	    _react2.default.createElement(_reactRouter.Route, { path: 'students', component: _components.Foo }),
 	    _react2.default.createElement(_reactRouter.Route, { path: 'teachers', component: _components.Bar })
 	  ),
@@ -40602,10 +40604,18 @@
 	          _react2.default.createElement(
 	            _materialUi.List,
 	            null,
-	            _react2.default.createElement(_materialUi.ListItem, { onTouchTap: this.redirect.bind(this), primaryText: 'DashBoard', primaryTogglesNestedList: true }),
-	            _react2.default.createElement(_materialUi.ListItem, { onTouchTap: this.redirect.bind(this), primaryText: 'My Account', primaryTogglesNestedList: true }),
-	            _react2.default.createElement(_materialUi.ListItem, { primaryText: 'Attendance', primaryTogglesNestedList: true }),
-	            _react2.default.createElement(_materialUi.ListItem, { primaryText: 'Students', primaryTogglesNestedList: true,
+	            _react2.default.createElement(_materialUi.ListItem, { onClick: function onClick() {
+	                return _reactRouter.browserHistory.push('/app');
+	              }, primaryText: 'DashBoard', primaryTogglesNestedList: true }),
+	            _react2.default.createElement(_materialUi.ListItem, { onClick: function onClick() {
+	                return _reactRouter.browserHistory.push('/app/myAccount');
+	              }, primaryText: 'My Account', primaryTogglesNestedList: true }),
+	            _react2.default.createElement(_materialUi.ListItem, { onClick: function onClick() {
+	                return _reactRouter.browserHistory.push('/app/attendance');
+	              }, primaryText: 'Attendance', primaryTogglesNestedList: true }),
+	            _react2.default.createElement(_materialUi.ListItem, { onClick: function onClick() {
+	                return _reactRouter.browserHistory.push('/app/students');
+	              }, primaryText: 'Students', primaryTogglesNestedList: true,
 	              nestedItems: [_react2.default.createElement(_materialUi.ListItem, {
 	                key: 1,
 	                primaryText: 'Add Students'
@@ -40620,7 +40630,9 @@
 	                primaryTogglesNestedList: true,
 	                nestedItems: [_react2.default.createElement(_materialUi.ListItem, { key: 1, primaryText: 'Logs' })]
 	              })] }),
-	            _react2.default.createElement(_materialUi.ListItem, { primaryText: 'Teachers', primaryTogglesNestedList: true,
+	            _react2.default.createElement(_materialUi.ListItem, { onClick: function onClick() {
+	                return _reactRouter.browserHistory.push('/app/teachers');
+	              }, primaryText: 'Teachers', primaryTogglesNestedList: true,
 	              nestedItems: [_react2.default.createElement(_materialUi.ListItem, {
 	                key: 4,
 	                primaryText: 'Add Teachers'

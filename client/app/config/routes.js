@@ -21,6 +21,8 @@ export default (
            <Route path="/" component={Login} />
            <Route path="/app" component={App}>
              <IndexRoute component={DashBoard}/>
+             <Route path="myAccount" component={Foo}/>
+             <Route path="attendance" component={Foo}/>
              <Route path="students" component={Foo}/>
              <Route path="teachers" component={Bar}/>
             </Route>

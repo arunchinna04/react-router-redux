@@ -1,6 +1,6 @@
 import React, { Component} from 'react'
 import {AppBar,LeftNav,MenuItem,List,ListItem  } from 'material-ui';
-import { RouteHandler, Link } from 'react-router';
+import { RouteHandler, Link, browserHistory } from 'react-router';
 
 const styles = {
   container: {
@@ -34,10 +34,10 @@ export default class App extends Component {
           className = "left-nav"
           docked={true}>
           <List>
-            <ListItem  onTouchTap={this.redirect.bind(this)} primaryText="DashBoard"  primaryTogglesNestedList={true}></ListItem>
-            <ListItem onTouchTap={this.redirect.bind(this)} primaryText="My Account"  primaryTogglesNestedList={true}></ListItem>
-            <ListItem primaryText="Attendance"  primaryTogglesNestedList={true}></ListItem>
-            <ListItem primaryText="Students"  primaryTogglesNestedList={true}
+            <ListItem onClick={() => browserHistory.push('/app')} primaryText="DashBoard"  primaryTogglesNestedList={true} />
+            <ListItem onClick={() => browserHistory.push('/app/myAccount')} primaryText="My Account"  primaryTogglesNestedList={true} />
+            <ListItem onClick={() => browserHistory.push('/app/attendance')} primaryText="Attendance"  primaryTogglesNestedList={true}></ListItem>
+            <ListItem onClick={() => browserHistory.push('/app/students')} primaryText="Students"  primaryTogglesNestedList={true}
                  nestedItems={[<ListItem
                   key={1}
                   primaryText="Add Students"
@@ -57,7 +57,7 @@ export default class App extends Component {
                   ]}
                 />,
               ]}/>
-            <ListItem primaryText="Teachers"  primaryTogglesNestedList={true}
+            <ListItem onClick={() => browserHistory.push('/app/teachers')} primaryText="Teachers"  primaryTogglesNestedList={true}
                  nestedItems={[<ListItem
                   key={4}
                   primaryText="Add Teachers"
