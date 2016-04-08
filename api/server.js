@@ -14,7 +14,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }))
 
 app.use(function (req, res, next) {
-  console.log(req.query) // populated!
+  //console.log(req.query) // populated!
   next()
 })
 
@@ -27,9 +27,7 @@ app.post('/auth',function(req,res){
 })
 
 app.get('/', function(req, res){
-    var response = 'Welcome to Chola Module Generate <br>'+ 
-                   '  1. To create module          ->   /generate?module= module name<br>'+
-                   '  2. To Zip the module created ->   /zip<br>'; 
+    var response = 'Welcome to Mock Server'; 
   res.send(response);
 });
 

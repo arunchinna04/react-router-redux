@@ -17,7 +17,7 @@ export default class Login extends Component {
       const data = {'email':email,'password':pass};
          authenticateUsers(data).then(function(response) {
            if(response){
-            browserHistory.push('/app/foo')
+            browserHistory.push('/app')
            }
           
          }).catch(function(err) {
