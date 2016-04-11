@@ -40470,12 +40470,13 @@
 	  _react2.default.createElement(_reactRouter.Route, { path: '/', component: _components.Login }),
 	  _react2.default.createElement(
 	    _reactRouter.Route,
-	    { path: '/app', component: _components.App },
+	    { name: 'app', path: '/app', component: _components.App },
 	    _react2.default.createElement(_reactRouter.IndexRoute, { component: _components.DashBoard }),
-	    _react2.default.createElement(_reactRouter.Route, { path: 'myAccount', component: _components.Foo }),
-	    _react2.default.createElement(_reactRouter.Route, { path: 'attendance', component: _components.Foo }),
-	    _react2.default.createElement(_reactRouter.Route, { path: 'students', component: _components.Foo }),
-	    _react2.default.createElement(_reactRouter.Route, { path: 'teachers', component: _components.Bar })
+	    _react2.default.createElement(_reactRouter.Route, { name: 'myAccount', path: 'myAccount', component: _components.Foo }),
+	    _react2.default.createElement(_reactRouter.Route, { name: 'attendance', path: 'attendance', component: _components.Foo }),
+	    _react2.default.createElement(_reactRouter.Route, { name: 'students', path: 'students', component: _components.StudentList }),
+	    _react2.default.createElement(_reactRouter.Route, { path: 'students/:id', component: _components.StudentDetail }),
+	    _react2.default.createElement(_reactRouter.Route, { name: 'teachers', path: 'teachers', component: _components.Bar })
 	  ),
 	  _react2.default.createElement(_reactRouter.Route, { path: '*', component: _components.PageNotFound, status: 404 })
 	);
@@ -40489,7 +40490,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.DashBoard = exports.PageNotFound = exports.Login = exports.Bar = exports.Foo = exports.Home = exports.App = undefined;
+	exports.StudentList = exports.StudentDetail = exports.DashBoard = exports.PageNotFound = exports.Login = exports.Bar = exports.Foo = exports.Home = exports.App = undefined;
 
 	var _App2 = __webpack_require__(657);
 
@@ -40519,6 +40520,14 @@
 
 	var _DashBoard3 = _interopRequireDefault(_DashBoard2);
 
+	var _StudentDetail2 = __webpack_require__(954);
+
+	var _StudentDetail3 = _interopRequireDefault(_StudentDetail2);
+
+	var _StudentList2 = __webpack_require__(955);
+
+	var _StudentList3 = _interopRequireDefault(_StudentList2);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.App = _App3.default;
@@ -40528,6 +40537,8 @@
 	exports.Login = _Login3.default;
 	exports.PageNotFound = _PageNotFound3.default;
 	exports.DashBoard = _DashBoard3.default;
+	exports.StudentDetail = _StudentDetail3.default;
+	exports.StudentList = _StudentList3.default;
 
 /***/ },
 /* 657 */
@@ -40604,32 +40615,88 @@
 	          _react2.default.createElement(
 	            _materialUi.List,
 	            null,
-	            _react2.default.createElement(_materialUi.ListItem, { onClick: function onClick() {
-	                return _reactRouter.browserHistory.push('/app');
-	              }, primaryText: 'DashBoard', primaryTogglesNestedList: true }),
-	            _react2.default.createElement(_materialUi.ListItem, { onClick: function onClick() {
-	                return _reactRouter.browserHistory.push('/app/myAccount');
-	              }, primaryText: 'My Account', primaryTogglesNestedList: true }),
-	            _react2.default.createElement(_materialUi.ListItem, { onClick: function onClick() {
-	                return _reactRouter.browserHistory.push('/app/attendance');
-	              }, primaryText: 'Attendance', primaryTogglesNestedList: true }),
-	            _react2.default.createElement(_materialUi.ListItem, { onClick: function onClick() {
-	                return _reactRouter.browserHistory.push('/app/students');
-	              }, primaryText: 'Students', primaryTogglesNestedList: true,
-	              nestedItems: [_react2.default.createElement(_materialUi.ListItem, {
-	                key: 1,
-	                primaryText: 'Add Students'
-	              }), _react2.default.createElement(_materialUi.ListItem, {
-	                key: 2,
-	                primaryText: 'Delete Students',
-	                primaryTogglesNestedList: true
-	              }), _react2.default.createElement(_materialUi.ListItem, {
-	                key: 3,
-	                primaryText: 'Students Activity',
-	                disabled: true,
-	                primaryTogglesNestedList: true,
-	                nestedItems: [_react2.default.createElement(_materialUi.ListItem, { key: 1, primaryText: 'Logs' })]
-	              })] }),
+	            _react2.default.createElement(
+	              _materialUi.ListItem,
+	              { primaryTogglesNestedList: true },
+	              _react2.default.createElement(
+	                _reactRouter.Link,
+	                { to: 'app' },
+	                'DashBoard'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              _materialUi.ListItem,
+	              { primaryTogglesNestedList: true },
+	              _react2.default.createElement(
+	                _reactRouter.Link,
+	                { to: 'app/students' },
+	                'My Account'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              _materialUi.ListItem,
+	              { primaryTogglesNestedList: true },
+	              _react2.default.createElement(
+	                _reactRouter.Link,
+	                { to: 'app/students' },
+	                'Attendance'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              _materialUi.ListItem,
+	              { primaryTogglesNestedList: true,
+	                nestedItems: [_react2.default.createElement(
+	                  _materialUi.ListItem,
+	                  {
+	                    key: 1
+
+	                  },
+	                  _react2.default.createElement(
+	                    _reactRouter.Link,
+	                    { to: 'app/students' },
+	                    'Add Students'
+	                  )
+	                ), _react2.default.createElement(
+	                  _materialUi.ListItem,
+	                  {
+	                    key: 2,
+
+	                    primaryTogglesNestedList: true
+	                  },
+	                  _react2.default.createElement(
+	                    _reactRouter.Link,
+	                    { to: 'app/students' },
+	                    'Delete Students'
+	                  )
+	                ), _react2.default.createElement(
+	                  _materialUi.ListItem,
+	                  {
+	                    key: 3,
+
+	                    disabled: true,
+	                    primaryTogglesNestedList: true,
+	                    nestedItems: [_react2.default.createElement(
+	                      _materialUi.ListItem,
+	                      { key: 1 },
+	                      _react2.default.createElement(
+	                        _reactRouter.Link,
+	                        { to: 'app/students' },
+	                        'Students Activity'
+	                      )
+	                    )]
+	                  },
+	                  _react2.default.createElement(
+	                    _reactRouter.Link,
+	                    { to: 'app/students' },
+	                    'Logs'
+	                  )
+	                )] },
+	              _react2.default.createElement(
+	                _reactRouter.Link,
+	                { to: 'app/students' },
+	                'Students'
+	              )
+	            ),
 	            _react2.default.createElement(_materialUi.ListItem, { onClick: function onClick() {
 	                return _reactRouter.browserHistory.push('/app/teachers');
 	              }, primaryText: 'Teachers', primaryTogglesNestedList: true,
@@ -79986,6 +80053,182 @@
 	}(_react.Component);
 
 	exports.default = DashBoard;
+
+/***/ },
+/* 954 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(121);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var StudentDetail = function (_Component) {
+	  _inherits(StudentDetail, _Component);
+
+	  function StudentDetail() {
+	    _classCallCheck(this, StudentDetail);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(StudentDetail).apply(this, arguments));
+	  }
+
+	  _createClass(StudentDetail, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        this.props.params.id
+	      );
+	    }
+	  }]);
+
+	  return StudentDetail;
+	}(_react.Component);
+
+	exports.default = StudentDetail;
+
+/***/ },
+/* 955 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(121);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(585);
+
+	var _materialUi = __webpack_require__(658);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var StudentsList = [{
+	  lastName: "Chinna",
+	  firstName: "Arun",
+	  id: 1
+	}, {
+	  lastName: "Raj",
+	  firstName: "Chinna",
+	  id: 2
+	}, {
+	  lastName: "YYY",
+	  firstName: "XXX",
+	  id: 3
+	}, {
+	  lastName: "JJJJ",
+	  firstName: "ZZZZ",
+	  id: 3
+	}];
+
+	var Studentlist = function (_Component) {
+	  _inherits(Studentlist, _Component);
+
+	  function Studentlist() {
+	    _classCallCheck(this, Studentlist);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Studentlist).apply(this, arguments));
+	  }
+
+	  _createClass(Studentlist, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          _materialUi.Table,
+	          null,
+	          _react2.default.createElement(
+	            _materialUi.TableHeader,
+	            null,
+	            _react2.default.createElement(
+	              _materialUi.TableRow,
+	              null,
+	              _react2.default.createElement(
+	                _materialUi.TableHeaderColumn,
+	                null,
+	                'ID'
+	              ),
+	              _react2.default.createElement(
+	                _materialUi.TableHeaderColumn,
+	                null,
+	                'First Name'
+	              ),
+	              _react2.default.createElement(
+	                _materialUi.TableHeaderColumn,
+	                null,
+	                'Last Name'
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _materialUi.TableBody,
+	            null,
+	            StudentsList.map(function (student) {
+	              return _react2.default.createElement(
+	                _materialUi.TableRow,
+	                null,
+	                _react2.default.createElement(
+	                  _materialUi.TableRowColumn,
+	                  null,
+	                  ' ',
+	                  _react2.default.createElement(
+	                    _reactRouter.Link,
+	                    { to: 'students/1' },
+	                    student.id
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  _materialUi.TableRowColumn,
+	                  null,
+	                  student.firstName
+	                ),
+	                _react2.default.createElement(
+	                  _materialUi.TableRowColumn,
+	                  null,
+	                  student.lastName
+	                )
+	              );
+	            })
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Studentlist;
+	}(_react.Component);
+
+	exports.default = Studentlist;
 
 /***/ }
 /******/ ]);

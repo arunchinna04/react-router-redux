@@ -2,7 +2,7 @@ import React from 'react';
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 
 
-import { App, Home, Foo, Bar, Login, PageNotFound, DashBoard } from '../components'
+import { App, Home, Foo, Bar, Login, PageNotFound, DashBoard, StudentDetail, StudentList } from '../components'
 
 //import LoginMaterial from 'ui/LoginMaterial';
 
@@ -19,12 +19,13 @@ export default (
 
       <Route>
            <Route path="/" component={Login} />
-           <Route path="/app" component={App}>
+           <Route name="app" path="/app" component={App}>
              <IndexRoute component={DashBoard}/>
-             <Route path="myAccount" component={Foo}/>
-             <Route path="attendance" component={Foo}/>
-             <Route path="students" component={Foo}/>
-             <Route path="teachers" component={Bar}/>
+             <Route name="myAccount" path="myAccount" component={Foo}/>
+             <Route name="attendance" path="attendance" component={Foo}/>
+             <Route name="students" path="students" component={StudentList}/>
+              <Route  path="students/:id" component={StudentDetail}/>
+             <Route name="teachers" path="teachers" component={Bar}/>
             </Route>
            <Route path="*" component={PageNotFound} status={404}/>
        </Route>
