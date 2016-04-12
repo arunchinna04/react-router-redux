@@ -20,7 +20,32 @@ const StudentsList = [{
 }]
 
 export default class Studentlist extends Component {
+   
+  //   getInitialState: function() {
+  //   return {
+  //     username: '',
+  //     lastGistUrl: ''
+  //   };
+  // },
+
+  // componentDidMount: function() {
+  //   // this.serverRequest = $.get(this.props.source, function (result) {
+  //   //   var lastGist = result[0];
+  //   //   this.setState({
+  //   //     username: lastGist.owner.login,
+  //   //     lastGistUrl: lastGist.html_url
+  //   //   });
+  //   // }.bind(this));
+
+    
+  //   console.log('In Mount')
+  // },
+
+
+
   render(){
+
+    
     return (
             <div>
               <Table>

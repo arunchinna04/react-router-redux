@@ -52,7 +52,7 @@ const history = syncHistoryWithStore(browserHistory, store)
 ReactDOM.render(
   <Provider store={store}>
     <div>
-      <Router history={browserHistory} routes={Routes} />
+      <Router  routes={Routes} />
     </div>
   </Provider>,
   document.getElementById('mount')

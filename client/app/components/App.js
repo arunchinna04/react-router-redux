@@ -9,6 +9,21 @@ const styles = {
   },
 };
 
+const MenuList = [{
+ 
+  name:"DashBoard",
+  route:"/app"
+},{
+ name:"Students",
+  route:"/app/students"
+},{
+ name:"Teachers",
+  route:"/app/teachers"
+},{
+ name:"Account",
+  route:"/app/account"
+}]
+
 export default class App extends Component {
 
   // This will be called when the user clicks on the login button
@@ -33,51 +48,14 @@ export default class App extends Component {
           ref="leftNav"
           className = "left-nav"
           docked={true}>
-          <List>
-            <ListItem primaryTogglesNestedList={true}><Link to="app">DashBoard</Link></ListItem>
-            <ListItem primaryTogglesNestedList={true}><Link to="app/students">My Account</Link></ListItem>
-            <ListItem primaryTogglesNestedList={true}><Link to="app/students">Attendance</Link></ListItem>
-            <ListItem primaryTogglesNestedList={true}
-                 nestedItems={[<ListItem
-                  key={1}
-                 
-                ><Link to="app/students">Add Students</Link></ListItem>,
-                <ListItem
-                  key={2}
-                
-                  primaryTogglesNestedList={true}
-                ><Link to="app/students">Delete Students</Link></ListItem>,
-                <ListItem
-                  key={3}
-                           
-                  disabled={true}
-                  primaryTogglesNestedList={true}
-                  nestedItems={[
-                    <ListItem key={1}><Link to="app/students">Students Activity</Link></ListItem>,
-                  ]}
-                ><Link to="app/students">Logs</Link></ListItem>,
-              ]}><Link to="app/students">Students</Link></ListItem>
-            <ListItem onClick={() => browserHistory.push('/app/teachers')} primaryText="Teachers"  primaryTogglesNestedList={true}
-                 nestedItems={[<ListItem
-                  key={4}
-                  primaryText="Add Teachers"
-                />,
-                <ListItem
-                  key={5}
-                  primaryText="Delete Teachers"
-                  primaryTogglesNestedList={true}
-                />,
-                <ListItem
-                  key={6}
-                  primaryText="Teachers Activity"            
-                  disabled={true}
-                  primaryTogglesNestedList={true}
-                  nestedItems={[
-                    <ListItem key={1} primaryText="Logs"  />,
-                  ]}
-                />,
-              ]}/>  
-      
+          <List onClick={this.handleToggle} >
+         
+
+{MenuList.map(menu => (
+                       <ListItem  onClick={() => browserHistory.push(menu.route)} primaryTogglesNestedList={true}>{menu.name}</ListItem>
+                  ))}
+
+     
             
            
     </List>
@@ -120,3 +98,48 @@ export default class App extends Component {
 //     </div>
 //   )
 // }
+
+
+ // <ListItem primaryTogglesNestedList={true}><Link to="app">DashBoard</Link></ListItem>
+ //            <ListItem  onClick={() => browserHistory.push('/app/students')} primaryTogglesNestedList={true}>My Account</ListItem>
+ //            <ListItem primaryTogglesNestedList={true}><Link to="app/students">Attendance</Link></ListItem>
+ //            <ListItem primaryTogglesNestedList={true}
+ //                 nestedItems={[<ListItem
+ //                  key={1}
+                 
+ //                ><Link to="app/students">Add Students</Link></ListItem>,
+ //                <ListItem
+ //                  key={2}
+                
+ //                  primaryTogglesNestedList={true}
+ //                ><Link to="app/students">Delete Students</Link></ListItem>,
+ //                <ListItem
+ //                  key={3}
+                           
+ //                  disabled={true}
+ //                  primaryTogglesNestedList={true}
+ //                  nestedItems={[
+ //                    <ListItem key={1}><Link to="app/students">Students Activity</Link></ListItem>,
+ //                  ]}
+ //                ><Link to="app/students">Logs</Link></ListItem>,
+ //              ]}><Link to="app/students">Students</Link></ListItem>
+ //            <ListItem onClick={() => browserHistory.push('/app/teachers')} primaryText="Teachers"  primaryTogglesNestedList={true}
+ //                 nestedItems={[<ListItem
+ //                  key={4}
+ //                  primaryText="Add Teachers"
+ //                />,
+ //                <ListItem
+ //                  key={5}
+ //                  primaryText="Delete Teachers"
+ //                  primaryTogglesNestedList={true}
+ //                />,
+ //                <ListItem
+ //                  key={6}
+ //                  primaryText="Teachers Activity"            
+ //                  disabled={true}
+ //                  primaryTogglesNestedList={true}
+ //                  nestedItems={[
+ //                    <ListItem key={1} primaryText="Logs"  />,
+ //                  ]}
+ //                />,
+ //              ]}/>  

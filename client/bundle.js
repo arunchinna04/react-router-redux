@@ -129,7 +129,7 @@
 	  _react2.default.createElement(
 	    'div',
 	    null,
-	    _react2.default.createElement(_reactRouter.Router, { history: _reactRouter.browserHistory, routes: _routes2.default })
+	    _react2.default.createElement(_reactRouter.Router, { routes: _routes2.default })
 	  )
 	), document.getElementById('mount'));
 
@@ -40475,8 +40475,8 @@
 	    _react2.default.createElement(_reactRouter.Route, { name: 'myAccount', path: 'myAccount', component: _components.Foo }),
 	    _react2.default.createElement(_reactRouter.Route, { name: 'attendance', path: 'attendance', component: _components.Foo }),
 	    _react2.default.createElement(_reactRouter.Route, { name: 'students', path: 'students', component: _components.StudentList }),
-	    _react2.default.createElement(_reactRouter.Route, { path: 'students/:id', component: _components.StudentDetail }),
-	    _react2.default.createElement(_reactRouter.Route, { name: 'teachers', path: 'teachers', component: _components.Bar })
+	    _react2.default.createElement(_reactRouter.Route, { path: 'students/2', component: _components.StudentDetail }),
+	    _react2.default.createElement(_reactRouter.Route, { name: 'teachers', path: 'teachers', component: _components.Table })
 	  ),
 	  _react2.default.createElement(_reactRouter.Route, { path: '*', component: _components.PageNotFound, status: 404 })
 	);
@@ -40490,7 +40490,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.StudentList = exports.StudentDetail = exports.DashBoard = exports.PageNotFound = exports.Login = exports.Bar = exports.Foo = exports.Home = exports.App = undefined;
+	exports.Table = exports.StudentList = exports.StudentDetail = exports.DashBoard = exports.PageNotFound = exports.Login = exports.Bar = exports.Foo = exports.Home = exports.App = undefined;
 
 	var _App2 = __webpack_require__(657);
 
@@ -40528,6 +40528,10 @@
 
 	var _StudentList3 = _interopRequireDefault(_StudentList2);
 
+	var _Table2 = __webpack_require__(956);
+
+	var _Table3 = _interopRequireDefault(_Table2);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.App = _App3.default;
@@ -40539,6 +40543,7 @@
 	exports.DashBoard = _DashBoard3.default;
 	exports.StudentDetail = _StudentDetail3.default;
 	exports.StudentList = _StudentList3.default;
+	exports.Table = _Table3.default;
 
 /***/ },
 /* 657 */
@@ -40574,6 +40579,21 @@
 	    paddingTop: 200
 	  }
 	};
+
+	var MenuList = [{
+
+	  name: "DashBoard",
+	  route: "/app"
+	}, {
+	  name: "Students",
+	  route: "/app/students"
+	}, {
+	  name: "Teachers",
+	  route: "/app/teachers"
+	}, {
+	  name: "Account",
+	  route: "/app/account"
+	}];
 
 	var App = function (_Component) {
 	  _inherits(App, _Component);
@@ -40614,106 +40634,16 @@
 	            docked: true },
 	          _react2.default.createElement(
 	            _materialUi.List,
-	            null,
-	            _react2.default.createElement(
-	              _materialUi.ListItem,
-	              { primaryTogglesNestedList: true },
-	              _react2.default.createElement(
-	                _reactRouter.Link,
-	                { to: 'app' },
-	                'DashBoard'
-	              )
-	            ),
-	            _react2.default.createElement(
-	              _materialUi.ListItem,
-	              { primaryTogglesNestedList: true },
-	              _react2.default.createElement(
-	                _reactRouter.Link,
-	                { to: 'app/students' },
-	                'My Account'
-	              )
-	            ),
-	            _react2.default.createElement(
-	              _materialUi.ListItem,
-	              { primaryTogglesNestedList: true },
-	              _react2.default.createElement(
-	                _reactRouter.Link,
-	                { to: 'app/students' },
-	                'Attendance'
-	              )
-	            ),
-	            _react2.default.createElement(
-	              _materialUi.ListItem,
-	              { primaryTogglesNestedList: true,
-	                nestedItems: [_react2.default.createElement(
-	                  _materialUi.ListItem,
-	                  {
-	                    key: 1
-
-	                  },
-	                  _react2.default.createElement(
-	                    _reactRouter.Link,
-	                    { to: 'app/students' },
-	                    'Add Students'
-	                  )
-	                ), _react2.default.createElement(
-	                  _materialUi.ListItem,
-	                  {
-	                    key: 2,
-
-	                    primaryTogglesNestedList: true
-	                  },
-	                  _react2.default.createElement(
-	                    _reactRouter.Link,
-	                    { to: 'app/students' },
-	                    'Delete Students'
-	                  )
-	                ), _react2.default.createElement(
-	                  _materialUi.ListItem,
-	                  {
-	                    key: 3,
-
-	                    disabled: true,
-	                    primaryTogglesNestedList: true,
-	                    nestedItems: [_react2.default.createElement(
-	                      _materialUi.ListItem,
-	                      { key: 1 },
-	                      _react2.default.createElement(
-	                        _reactRouter.Link,
-	                        { to: 'app/students' },
-	                        'Students Activity'
-	                      )
-	                    )]
-	                  },
-	                  _react2.default.createElement(
-	                    _reactRouter.Link,
-	                    { to: 'app/students' },
-	                    'Logs'
-	                  )
-	                )] },
-	              _react2.default.createElement(
-	                _reactRouter.Link,
-	                { to: 'app/students' },
-	                'Students'
-	              )
-	            ),
-	            _react2.default.createElement(_materialUi.ListItem, { onClick: function onClick() {
-	                return _reactRouter.browserHistory.push('/app/teachers');
-	              }, primaryText: 'Teachers', primaryTogglesNestedList: true,
-	              nestedItems: [_react2.default.createElement(_materialUi.ListItem, {
-	                key: 4,
-	                primaryText: 'Add Teachers'
-	              }), _react2.default.createElement(_materialUi.ListItem, {
-	                key: 5,
-	                primaryText: 'Delete Teachers',
-	                primaryTogglesNestedList: true
-	              }), _react2.default.createElement(_materialUi.ListItem, {
-	                key: 6,
-	                primaryText: 'Teachers Activity',
-	                disabled: true,
-	                primaryTogglesNestedList: true,
-	                nestedItems: [_react2.default.createElement(_materialUi.ListItem, { key: 1, primaryText: 'Logs' })]
-	              })] })
+	            { onClick: this.handleToggle },
+	            MenuList.map(function (menu) {
+	              return _react2.default.createElement(
+	                _materialUi.ListItem,
+	                { onClick: function onClick() {
+	                    return _reactRouter.browserHistory.push(menu.route);
+	                  }, primaryTogglesNestedList: true },
+	                menu.name
+	              );
+	            })
 	          )
 	        ),
 	        _react2.default.createElement(
@@ -40750,6 +40680,50 @@
 	//     </div>
 	//   )
 	// }
+
+	// <ListItem primaryTogglesNestedList={true}><Link to="app">DashBoard</Link></ListItem>
+	//            <ListItem  onClick={() => browserHistory.push('/app/students')} primaryTogglesNestedList={true}>My Account</ListItem>
+	//            <ListItem primaryTogglesNestedList={true}><Link to="app/students">Attendance</Link></ListItem>
+	//            <ListItem primaryTogglesNestedList={true}
+	//                 nestedItems={[<ListItem
+	//                  key={1}
+
+	//                ><Link to="app/students">Add Students</Link></ListItem>,
+	//                <ListItem
+	//                  key={2}
+
+	//                  primaryTogglesNestedList={true}
+	//                ><Link to="app/students">Delete Students</Link></ListItem>,
+	//                <ListItem
+	//                  key={3}
+
+	//                  disabled={true}
+	//                  primaryTogglesNestedList={true}
+	//                  nestedItems={[
+	//                    <ListItem key={1}><Link to="app/students">Students Activity</Link></ListItem>,
+	//                  ]}
+	//                ><Link to="app/students">Logs</Link></ListItem>,
+	//              ]}><Link to="app/students">Students</Link></ListItem>
+	//            <ListItem onClick={() => browserHistory.push('/app/teachers')} primaryText="Teachers"  primaryTogglesNestedList={true}
+	//                 nestedItems={[<ListItem
+	//                  key={4}
+	//                  primaryText="Add Teachers"
+	//                />,
+	//                <ListItem
+	//                  key={5}
+	//                  primaryText="Delete Teachers"
+	//                  primaryTogglesNestedList={true}
+	//                />,
+	//                <ListItem
+	//                  key={6}
+	//                  primaryText="Teachers Activity"           
+	//                  disabled={true}
+	//                  primaryTogglesNestedList={true}
+	//                  nestedItems={[
+	//                    <ListItem key={1} primaryText="Logs"  />,
+	//                  ]}
+	//                />,
+	//              ]}/> 
 
 
 	exports.default = App;
@@ -78843,14 +78817,14 @@
 	//import store from 'store';
 
 	function getUsers() {
-	    return _axios2.default.get('http://localhost:3000/users').then(function (response) {
+	    return _axios2.default.get('http://localhost:8011/users').then(function (response) {
 
 	        // store.dispatch({
 	        //     type: 'GET_USERS',
 	        //     users: response.data
 	        // })
 
-	        return response;
+	        return response.data;
 	    }).catch(function (err) {
 	        console.error(err);
 	    });
@@ -80160,7 +80134,29 @@
 
 	  _createClass(Studentlist, [{
 	    key: 'render',
+
+
+	    //   getInitialState: function() {
+	    //   return {
+	    //     username: '',
+	    //     lastGistUrl: ''
+	    //   };
+	    // },
+
+	    // componentDidMount: function() {
+	    //   // this.serverRequest = $.get(this.props.source, function (result) {
+	    //   //   var lastGist = result[0];
+	    //   //   this.setState({
+	    //   //     username: lastGist.owner.login,
+	    //   //     lastGistUrl: lastGist.html_url
+	    //   //   });
+	    //   // }.bind(this));
+
+	    //   console.log('In Mount')
+	    // },
+
 	    value: function render() {
+
 	      return _react2.default.createElement(
 	        'div',
 	        null,
@@ -80229,6 +80225,143 @@
 	}(_react.Component);
 
 	exports.default = Studentlist;
+
+/***/ },
+/* 956 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(121);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _user = __webpack_require__(934);
+
+	var _reactRouter = __webpack_require__(585);
+
+	var _materialUi = __webpack_require__(658);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var NotesList = _react2.default.createClass({
+	  displayName: 'NotesList',
+
+
+	  getInitialState: function getInitialState() {
+	    return {
+	      data: []
+	    };
+	  },
+
+	  loadData: function loadData() {
+
+	    (0, _user.getUsers)().then(function (response) {
+	      this.setState({ data: response });
+	    }.bind(this));
+	  },
+
+	  componentDidMount: function componentDidMount() {
+	    this.loadData();
+	    console.log('welcome');
+	  },
+
+	  render: function render() {
+	    //var notes = this.props.notepad;
+	    var students = this.state.data;
+
+	    return _react2.default.createElement(
+	      _materialUi.Table,
+	      null,
+	      _react2.default.createElement(
+	        _materialUi.TableHeader,
+	        null,
+	        _react2.default.createElement(
+	          _materialUi.TableRow,
+	          null,
+	          _react2.default.createElement(
+	            _materialUi.TableHeaderColumn,
+	            null,
+	            'ID'
+	          ),
+	          _react2.default.createElement(
+	            _materialUi.TableHeaderColumn,
+	            null,
+	            'First Name'
+	          ),
+	          _react2.default.createElement(
+	            _materialUi.TableHeaderColumn,
+	            null,
+	            'Last Name'
+	          )
+	        )
+	      ),
+	      _react2.default.createElement(
+	        _materialUi.TableBody,
+	        null,
+	        students.map(function (student) {
+	          return _react2.default.createElement(
+	            _materialUi.TableRow,
+	            null,
+	            _react2.default.createElement(
+	              _materialUi.TableRowColumn,
+	              null,
+	              ' ',
+	              _react2.default.createElement(
+	                _reactRouter.Link,
+	                { to: '/students/' + student.id },
+	                student.id
+	              )
+	            ),
+	            _react2.default.createElement(
+	              _materialUi.TableRowColumn,
+	              null,
+	              student.firstName
+	            ),
+	            _react2.default.createElement(
+	              _materialUi.TableRowColumn,
+	              null,
+	              student.lastName
+	            )
+	          );
+	        })
+	      )
+	    );
+	  }
+	});
+
+	var TableDetail = function (_Component) {
+	  _inherits(TableDetail, _Component);
+
+	  function TableDetail() {
+	    _classCallCheck(this, TableDetail);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(TableDetail).apply(this, arguments));
+	  }
+
+	  _createClass(TableDetail, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(NotesList, null);
+	    }
+	  }]);
+
+	  return TableDetail;
+	}(_react.Component);
+
+	exports.default = TableDetail;
 
 /***/ }
 /******/ ]);

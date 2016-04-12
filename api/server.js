@@ -25,6 +25,11 @@ app.post('/auth',function(req,res){
     res.send(response);
   
 })
+app.get('/users', function(req, res){
+  
+  var response = [{"lastName":"Chinna","firstName":"Arun","id":1},{"lastName":"Raj","firstName":"Chinna","id":2},{"lastName":"YYY","firstName":"XXX","id":3},{"lastName":"JJJJ","firstName":"ZZZZ","id":3}]; 
+  res.send(response);
+});
 
 app.get('/', function(req, res){
     var response = 'Welcome to Mock Server'; 
