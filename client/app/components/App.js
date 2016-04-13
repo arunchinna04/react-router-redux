@@ -27,7 +27,7 @@ var Menu = React.createClass({
     const MenuList = this.state.data;
 
     return (
-      <List onClick={this.handleToggle} >
+      <List>
       {MenuList.map(menu => (
                        <ListItem  onClick={() => browserHistory.push(menu.route)} primaryTogglesNestedList={true}>{menu.name}</ListItem>
                   ))}
@@ -58,9 +58,9 @@ export default class App extends Component {
           ref="leftNav"
           className = "left-nav"
           docked={true}>
-        
-             <Menu/>
-         
+            <div onClick={this.handleToggle}>
+             <Menu />
+            </div>          
 
         </LeftNav>
 

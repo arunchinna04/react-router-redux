@@ -24,7 +24,7 @@ export default (
              <Route name="myAccount" path="myAccount" component={Foo}/>
              <Route name="attendance" path="attendance" component={Foo}/>
              <Route name="students" path="students" component={StudentList}/>
-              <Route  path="students/2" component={StudentDetail}/>
+              <Route path="students/:id" component={StudentDetail}/>
              <Route name="teachers" path="teachers" component={Table}/>
             </Route>
            <Route path="*" component={PageNotFound} status={404}/>

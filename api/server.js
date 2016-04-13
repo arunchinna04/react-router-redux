@@ -31,6 +31,30 @@ app.get('/users', function(req, res){
   res.send(response);
 });
 
+app.get('/student', function(req, res){
+
+console.log('asdas',req.query)
+
+  var response = [{"lastName":"Chinna","firstName":"Arun","id":1},{"lastName":"Raj","firstName":"Chinna","id":2},{"lastName":"YYY","firstName":"XXX","id":3},{"lastName":"JJJJ","firstName":"ZZZZ","id":3}]; 
+  res.send(response);
+});
+
+app.get('/student/:id', function(req, res){
+
+var studentID = req.params.id
+var studentDetails = [{"lastName":"Chinna","firstName":"Arun","id":1},{"lastName":"Raj","firstName":"Chinna","id":2},{"lastName":"YYY","firstName":"XXX","id":3},{"lastName":"JJJJ","firstName":"ZZZZ","id":3}]; 
+var response = {};
+  for(var i=0;i<studentDetails.length;i++){
+    if(studentID == studentDetails[i].id){
+        response = studentDetails[i];
+        break;
+    }
+  }
+  
+  res.send(response);
+});
+
+
 app.get('/menu', function(req, res){
   
   var response = [{"name":"DashBoard","route":"/app"},{"name":"Students","route":"/app/students"},{"name":"Teachers","route":"/app/teachers"},{"name":"Account","route":"/app/account"}]; 

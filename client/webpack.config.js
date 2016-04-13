@@ -1,12 +1,15 @@
 /* eslint-disable */
 const path = require('path');
-
+const webpack = require('webpack');
 module.exports = {
   entry: './app/app.js',
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js'
   },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ],
   module: {
     loaders: [{
       test: /\.js$/,

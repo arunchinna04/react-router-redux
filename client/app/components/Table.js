@@ -43,7 +43,8 @@ var NotesList = React.createClass({
                  {students.map(student => (
                       <TableRow>
 
-                        <TableRowColumn> <Link to={`/students/${student.id}`} >{student.id}</Link></TableRowColumn>
+                        
+                        <TableRowColumn> <Link to={`/app/students/${student.id}`} >{student.id}</Link></TableRowColumn>
                         <TableRowColumn>{student.firstName}</TableRowColumn>
                         <TableRowColumn>{student.lastName}</TableRowColumn>
                       </TableRow>
