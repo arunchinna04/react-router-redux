@@ -1,28 +1,42 @@
 import React, { Component} from 'react'
 import {AppBar,LeftNav,MenuItem,List,ListItem  } from 'material-ui';
 import { RouteHandler, Link, browserHistory } from 'react-router';
+import { getMenu } from  '../api/user';
+var Menu = React.createClass({
 
-const styles = {
-  container: {
-    textAlign: 'center',
-    paddingTop: 200,
+   getInitialState: function() {
+    return {
+      data: []
+    };
   },
-};
 
-const MenuList = [{
- 
-  name:"DashBoard",
-  route:"/app"
-},{
- name:"Students",
-  route:"/app/students"
-},{
- name:"Teachers",
-  route:"/app/teachers"
-},{
- name:"Account",
-  route:"/app/account"
-}]
+   loadData: function () {
+
+    getMenu().then(function(response){
+        this.setState({data: response});
+    }.bind(this))
+       
+    },
+
+    componentDidMount: function () {
+        this.loadData();
+    },
+
+    render: function () {
+    //var notes = this.props.notepad;
+    const MenuList = this.state.data;
+
+    return (
+      <List onClick={this.handleToggle} >
+      {MenuList.map(menu => (
+                       <ListItem  onClick={() => browserHistory.push(menu.route)} primaryTogglesNestedList={true}>{menu.name}</ListItem>
+                  ))}
+        </List>
+           
+    );
+  }
+});
+
 
 export default class App extends Component {
 
@@ -34,10 +48,6 @@ export default class App extends Component {
 
   handleToggle = () => this.setState({open: !this.state.open});
 
-  redirect(url){
-    console.log('redirect',url);
-  }
-
   render(){
     return (
     <div>
@@ -48,17 +58,9 @@ export default class App extends Component {
           ref="leftNav"
           className = "left-nav"
           docked={true}>
-          <List onClick={this.handleToggle} >
+        
+             <Menu/>
          
-
-{MenuList.map(menu => (
-                       <ListItem  onClick={() => browserHistory.push(menu.route)} primaryTogglesNestedList={true}>{menu.name}</ListItem>
-                  ))}
-
-     
-            
-           
-    </List>
 
         </LeftNav>
 

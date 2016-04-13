@@ -16,6 +16,14 @@ export function getUsers() {
     });
 }
 
+export function getMenu(){
+    return axios.get('http://localhost:8011/menu').then(function(response) {
+        return response.data;
+    }).catch(function(err) {
+        console.error(err);
+    });
+}
+
 export function authenticateUsers(data) {
     return axios.post('http://localhost:8011/auth',data).then(function(response) {      
 

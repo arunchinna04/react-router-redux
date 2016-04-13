@@ -31,6 +31,13 @@ app.get('/users', function(req, res){
   res.send(response);
 });
 
+app.get('/menu', function(req, res){
+  
+  var response = [{"name":"DashBoard","route":"/app"},{"name":"Students","route":"/app/students"},{"name":"Teachers","route":"/app/teachers"},{"name":"Account","route":"/app/account"}]; 
+  res.send(response);
+});
+
+
 app.get('/', function(req, res){
     var response = 'Welcome to Mock Server'; 
   res.send(response);
